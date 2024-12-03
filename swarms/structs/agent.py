@@ -705,7 +705,8 @@ class Agent:
                 self.llm.temperature = random.uniform(0.0, 1.0)
             else:
                 # Use a default temperature
-                self.llm.temperature = 0.5
+#                self.llm.temperature = 0.5
+                self.llm.temperature = 1
         except Exception as error:
             logger.error(
                 f"Error dynamically changing temperature: {error}"

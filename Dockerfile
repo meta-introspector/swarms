@@ -1,4 +1,3 @@
-
 # ==================================
 # Use an official Python runtime as a parent image
 FROM python:3.11-slim
@@ -17,17 +16,22 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install the 'swarms' package, assuming it's available on PyPI
-RUN pip install -U swarms
+COPY requirements.txt /app/requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copy the current directory contents into the container at /app
+COPY scripts /app/scripts
+COPY swarms /app/swarms
+COPY example.py /app/example.py
 
 # Copy the rest of the application
 COPY . .
+# Make port 80 available to the world outside this container
+#EXPOSE 80
 
-# Expose port if your application has a web interface
-# EXPOSE 5000
-
-# # Define environment variable for the swarm to work
+# Define environment variable
+# ENV NAME World
 # ENV OPENAI_API_KEY=your_swarm_api_key_here
+# Run app.py when the container launches
+CMD ["python3", "example.py"]
 
-# If you're using `CMD` to execute a Python script, make sure it's executable
-# RUN chmod +x example.py
