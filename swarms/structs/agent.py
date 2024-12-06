@@ -23,7 +23,7 @@ from typing import (
 import toml
 import yaml
 from pydantic import BaseModel
-from swarm_models.tiktoken_wrapper import TikTokenizer
+#from swarm_models.tiktoken_wrapper import TikTokenizer
 from swarms.agents.ape_agent import auto_generate_prompt
 from swarms.prompts.agent_system_prompts import AGENT_SYSTEM_PROMPT_3
 from swarms.prompts.multi_modal_autonomous_instruction_prompt import (
@@ -48,9 +48,8 @@ from swarms.utils.file_processing import create_file_in_folder
 from swarms.utils.pdf_to_text import pdf_to_text
 from swarms.artifacts.main_artifact import Artifact
 from swarms.utils.loguru_logger import initialize_logger
-from swarms.utils.wrapper_clusterop import (
-    exec_callable_with_clusterops,
-)
+#from swarms.utils.wrapper_clusterop import (    exec_callable_with_clusterops,
+#)
 from swarms.utils.formatter import formatter
 
 logger = initialize_logger(log_folder="agents")
@@ -336,7 +335,7 @@ class Agent:
         all_cores: bool = True,
         device_id: int = 0,
         scheduled_run_date: Optional[datetime] = None,
-        do_not_use_cluster_ops: bool = True,
+#        do_not_use_cluster_ops: bool = True,
         all_gpus: bool = False,
         model_name: str = None,
         llm_args: dict = None,
@@ -453,7 +452,7 @@ class Agent:
         self.all_cores = all_cores
         self.device_id = device_id
         self.scheduled_run_date = scheduled_run_date
-        self.do_not_use_cluster_ops = do_not_use_cluster_ops
+#        self.do_not_use_cluster_ops = do_not_use_cluster_ops
         self.all_gpus = all_gpus
         self.model_name = model_name
         self.llm_args = llm_args
@@ -2307,7 +2306,7 @@ class Agent:
         device_id: Optional[int] = 0,
         all_cores: Optional[bool] = True,
         scheduled_run_date: Optional[datetime] = None,
-        do_not_use_cluster_ops: Optional[bool] = False,
+#        do_not_use_cluster_ops: Optional[bool] = False,
         all_gpus: Optional[bool] = False,
         generate_speech: Optional[bool] = False,
         *args,
@@ -2327,7 +2326,7 @@ class Agent:
             device_id (int, optional): The ID of the GPU to use if device is set to "gpu". Defaults to 0.
             all_cores (bool, optional): If True, uses all available CPU cores. Defaults to True.
             scheduled_run_date (Optional[datetime], optional): The date and time to schedule the task. Defaults to None.
-            do_not_use_cluster_ops (bool, optional): If True, does not use cluster ops. Defaults to False.
+#            do_not_use_cluster_ops (bool, optional): If True, does not use cluster ops. Defaults to False.
             *args: Additional positional arguments to be passed to the execution method.
             **kwargs: Additional keyword arguments to be passed to the execution method.
 
@@ -2342,9 +2341,9 @@ class Agent:
         device_id = device_id or self.device_id
         all_cores = all_cores or self.all_cores
         all_gpus = all_gpus or self.all_gpus
-        do_not_use_cluster_ops = (
-            do_not_use_cluster_ops or self.do_not_use_cluster_ops
-        )
+#        do_not_use_cluster_ops = (
+#            do_not_use_cluster_ops or self.do_not_use_cluster_ops
+#        )
 
         if scheduled_run_date:
             while datetime.now() < scheduled_run_date:
@@ -2354,28 +2353,28 @@ class Agent:
 
         try:
             # If cluster ops disabled, run directly
-            if do_not_use_cluster_ops is True:
-                logger.info("Running without cluster operations")
-                return self._run(
-                    task=task,
-                    img=img,
-                    generate_speech=generate_speech * args,
-                    **kwargs,
-                )
+            #if do_not_use_cluster_ops is True:
+            logger.info("Running without cluster operations")
+            return self._run(
+                task=task,
+                img=img,
+                generate_speech=generate_speech * args,
+                **kwargs,
+            )
 
-            else:
-                return exec_callable_with_clusterops(
-                    device=device,
-                    device_id=device_id,
-                    all_cores=all_cores,
-                    all_gpus=all_gpus,
-                    func=self._run,
-                    task=task,
-                    img=img,
-                    generate_speech=generate_speech,
-                    *args,
-                    **kwargs,
-                )
+            # else:
+            #     return exec_callable_with_clusterops(
+            #         device=device,
+            #         device_id=device_id,
+            #         all_cores=all_cores,
+            #         all_gpus=all_gpus,
+            #         func=self._run,
+            #         task=task,
+            #         img=img,
+            #         generate_speech=generate_speech,
+            #         *args,
+            #         **kwargs,
+            #     )
 
         except ValueError as e:
             logger.error(f"Invalid device specified: {e}")

@@ -6,17 +6,17 @@ from datetime import datetime
 from typing import Callable, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field
-from swarms_memory import BaseVectorDatabase
+#from swarms_memory import BaseVectorDatabase
 
 from swarms.schemas.agent_step_schemas import ManySteps
 from swarms.structs.agent import Agent
 from swarms.structs.agents_available import showcase_available_agents
 from swarms.structs.base_swarm import BaseSwarm
-from swarms.utils.add_docs_to_agents import handle_input_docs
+#from swarms.utils.add_docs_to_agents import handle_input_docs
 from swarms.utils.loguru_logger import initialize_logger
-from swarms.utils.wrapper_clusterop import (
-    exec_callable_with_clusterops,
-)
+#from swarms.utils.wrapper_clusterop import (
+#    exec_callable_with_clusterops,
+#)
 
 logger = initialize_logger(log_folder="rearrange")
 
@@ -76,7 +76,7 @@ class AgentRearrange(BaseSwarm):
         flow (str): The flow pattern defining task execution order
         max_loops (int): Maximum number of execution loops
         verbose (bool): Whether to enable verbose logging
-        memory_system (BaseVectorDatabase): Memory system for storing agent interactions
+#        memory_system (BaseVectorDatabase): Memory system for storing agent interactions
         human_in_the_loop (bool): Whether human intervention is enabled
         custom_human_in_the_loop (Callable): Custom function for human intervention
         return_json (bool): Whether to return output in JSON format
@@ -112,7 +112,8 @@ class AgentRearrange(BaseSwarm):
         flow: str = None,
         max_loops: int = 1,
         verbose: bool = True,
-        memory_system: BaseVectorDatabase = None,
+#        memory_system: BaseVectorDatabase = None,
+        memory_system: any = None,
         human_in_the_loop: bool = False,
         custom_human_in_the_loop: Optional[
             Callable[[str], str]

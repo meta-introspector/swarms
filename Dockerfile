@@ -7,8 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set the working directory in the container
-WORKDIR /usr/src/swarms
-
+WORKDIR /app
 
 # Install Python dependencies
 # COPY requirements.txt and pyproject.toml if you're using poetry for dependency management
@@ -25,7 +24,7 @@ COPY swarms /app/swarms
 COPY example.py /app/example.py
 
 # Copy the rest of the application
-COPY . .
+#COPY . .
 # Make port 80 available to the world outside this container
 #EXPOSE 80
 

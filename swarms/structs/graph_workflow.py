@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Any, Callable, Dict, List
 
-import networkx as nx
+#import networkx as nx
 from pydantic.v1 import BaseModel, Field, validator
 
 from swarms.structs.agent import Agent  # noqa: F401
@@ -68,9 +68,9 @@ class GraphWorkflow(BaseModel):
     edges: List[Edge] = Field(default_factory=list)
     entry_points: List[str] = Field(default_factory=list)
     end_points: List[str] = Field(default_factory=list)
-    graph: nx.DiGraph = Field(
-        default_factory=nx.DiGraph, exclude=True
-    )
+#    graph: nx.DiGraph = Field(
+#        default_factory=nx.DiGraph, exclude=True
+#    )
     max_loops: int = 1
 
     class Config:
@@ -202,7 +202,7 @@ class GraphWorkflow(BaseModel):
                     )
 
                 # Perform a topological sort of the graph to ensure proper execution order
-                sorted_nodes = list(nx.topological_sort(self.graph))
+#                sorted_nodes = list(nx.topological_sort(self.graph))
 
                 # Initialize execution state
                 execution_results = {}

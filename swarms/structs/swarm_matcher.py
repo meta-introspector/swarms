@@ -1,7 +1,7 @@
 from typing import List, Tuple, Optional
 import numpy as np
-import torch
-from transformers import AutoTokenizer, AutoModel
+#import torch
+#from transformers import AutoTokenizer, AutoModel
 from pydantic import BaseModel, Field
 import json
 from tenacity import retry, stop_after_attempt, wait_exponential

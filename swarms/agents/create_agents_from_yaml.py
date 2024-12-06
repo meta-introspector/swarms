@@ -15,7 +15,7 @@ from pydantic import (
 )
 from swarms.utils.loguru_logger import initialize_logger
 from swarms.structs.agent import Agent
-from swarms.structs.swarm_router import SwarmRouter
+#from swarms.structs.swarm_router import SwarmRouter
 from swarms.utils.litellm import LiteLLM
 
 logger = initialize_logger(log_folder="create_agents_from_yaml")
@@ -164,10 +164,11 @@ def create_agents_from_yaml(
     yaml_string: str = None,
     return_type: str = "auto",
 ) -> Union[
-    SwarmRouter,
+#    SwarmRouter,
     Agent,
     List[Agent],
-    Tuple[Union[SwarmRouter, Agent], List[Agent]],
+    Tuple[Union[#SwarmRouter,
+        Agent], List[Agent]],
     List[Dict[str, Any]],
 ]:
     """
@@ -209,18 +210,18 @@ def create_agents_from_yaml(
                 swarm_config = SwarmConfig(
                     **config["swarm_architecture"]
                 )
-                swarm_router = SwarmRouter(
-                    name=swarm_config.name,
-                    description=swarm_config.description,
-                    max_loops=swarm_config.max_loops,
-                    agents=agents,
-                    swarm_type=swarm_config.swarm_type,
-                    task=swarm_config.task,
-                    flow=swarm_config.flow,
-                    autosave=swarm_config.autosave,
-                    return_json=swarm_config.return_json,
-                    rules=swarm_config.rules,
-                )
+                # swarm_router = SwarmRouter(
+                #     name=swarm_config.name,
+                #     description=swarm_config.description,
+                #     max_loops=swarm_config.max_loops,
+                #     agents=agents,
+                #     swarm_type=swarm_config.swarm_type,
+                #     task=swarm_config.task,
+                #     flow=swarm_config.flow,
+                #     autosave=swarm_config.autosave,
+                #     return_json=swarm_config.return_json,
+                #     rules=swarm_config.rules,
+                # )
                 logger.info(
                     f"SwarmRouter '{swarm_config.name}' created successfully."
                 )

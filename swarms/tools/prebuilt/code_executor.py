@@ -1,7 +1,7 @@
 import os
 import subprocess
 from loguru import logger
-from swarm_models.tiktoken_wrapper import TikTokenizer
+#from swarm_models.tiktoken_wrapper import TikTokenizer
 
 
 class CodeExecutor:
@@ -31,7 +31,7 @@ class CodeExecutor:
 
         os.makedirs(self.artifacts_dir, exist_ok=True)
         self.setup_logging()
-        self.tokenizer = TikTokenizer()
+#        self.tokenizer = TikTokenizer()
 
     def setup_logging(self) -> None:
         """
@@ -94,7 +94,8 @@ class CodeExecutor:
             )
             output = completed_process.stdout
             logger.info(f"Code output:\n{output}")
-            token_count = self.tokenizer.count_tokens(output)
+            token_count =1 ;
+            #self.tokenizer.count_tokens(output)
             print(token_count)
 
             if (

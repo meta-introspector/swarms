@@ -1,14 +1,14 @@
 import json
 from typing import Any, Dict, List, Union
 
-from transformers import PreTrainedModel, PreTrainedTokenizer
+#from transformers import PreTrainedModel, PreTrainedTokenizer
 from pydantic import BaseModel
-from swarms.tools.logits_processor import (
-    NumberStoppingCriteria,
-    OutputNumbersTokens,
-    StringStoppingCriteria,
-)
-from swarm_models.base_llm import BaseLLM
+#from swarms.tools.logits_processor import (
+#    NumberStoppingCriteria,
+#    OutputNumbersTokens,
+#    StringStoppingCriteria,
+#)
+#from swarm_models.base_llm import BaseLLM
 
 GENERATION_MARKER = "|GENERATION|"
 
@@ -35,8 +35,8 @@ class Jsonformer:
 
     def __init__(
         self,
-        model: PreTrainedModel = None,
-        tokenizer: PreTrainedTokenizer = None,
+        #model: PreTrainedModel = None,
+        #tokenizer: PreTrainedTokenizer = None,
         json_schema: Union[Dict[str, Any], BaseModel] = None,
         schemas: List[Union[Dict[str, Any], BaseModel]] = [],
         prompt: str = None,
@@ -46,7 +46,7 @@ class Jsonformer:
         max_number_tokens: int = 6,
         temperature: float = 1.0,
         max_string_token_length: int = 10,
-        llm: BaseLLM = None,
+#        llm: BaseLLM = None,
     ):
         self.model = model
         self.tokenizer = tokenizer
@@ -55,9 +55,9 @@ class Jsonformer:
         self.llm = llm
         self.schemas = schemas
 
-        self.number_logit_processor = OutputNumbersTokens(
-            self.tokenizer, self.prompt
-        )
+        #self.number_logit_processor = OutputNumbersTokens(
+        #    self.tokenizer, self.prompt
+        #)
 
         self.generation_marker = "|GENERATION|"
         self.debug_on = debug

@@ -41,7 +41,6 @@ agent = Agent(
     agent_name="Financial-Analysis-Agent",
     system_prompt=FINANCIAL_AGENT_SYS_PROMPT,
     llm=model,
-    max_loops=1,
     max_loops="auto",
     autosave=True,
     dashboard=False,

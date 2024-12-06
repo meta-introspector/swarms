@@ -9,11 +9,12 @@ load_dotenv()
 if os.getenv("SWARMS_VERBOSE_GLOBAL", "False").lower() == "false":
     logger.disable("")
 
-# Import telemetry functions with error handling
-from swarms.telemetry.bootup import bootup  # noqa: E402, F403
-from swarms.telemetry.sentry_active import (  # noqa: E402
-    activate_sentry,
-)  # noqa: E402
+
+## Import telemetry functions with error handling
+#from swarms.telemetry.bootup import bootup  # noqa: E402, F403
+#from swarms.telemetry.sentry_active import (  # noqa: E402
+#    activate_sentry,
+#)  # noqa: E402
 
 
 # Run telemetry functions concurrently with error handling
@@ -39,6 +40,6 @@ from swarms.artifacts import *  # noqa: E402, F403
 from swarms.prompts import *  # noqa: E402, F403
 from swarms.schemas import *  # noqa: E402, F403
 from swarms.structs import *  # noqa: E402, F403
-from swarms.telemetry import *  # noqa: E402, F403
+#from swarms.telemetry import *  # noqa: E402, F403
 from swarms.tools import *  # noqa: E402, F403
 from swarms.utils import *  # noqa: E402, F403
