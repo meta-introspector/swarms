@@ -5,7 +5,7 @@ from loguru import logger
 
 def initialize_logger(log_folder: str = "logs"):
 
-    AGENT_WORKSPACE = "agent_workspace"
+    AGENT_WORKSPACE = "/tmp/agent_workspace" # FIXME add the agent id to the path
 
     # Check if WORKSPACE_DIR is set, if not, set it to AGENT_WORKSPACE
     if "WORKSPACE_DIR" not in os.environ:
