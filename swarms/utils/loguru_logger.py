@@ -7,6 +7,7 @@ def initialize_logger(log_folder: str = "logs"):
 
     AGENT_WORKSPACE = "/tmp/agent_workspace" # FIXME add the agent id to the path
 
+        
     # Check if WORKSPACE_DIR is set, if not, set it to AGENT_WORKSPACE
     if "WORKSPACE_DIR" not in os.environ:
         os.environ["WORKSPACE_DIR"] = AGENT_WORKSPACE
@@ -15,6 +16,9 @@ def initialize_logger(log_folder: str = "logs"):
     log_folder_path = os.path.join(
         os.getenv("WORKSPACE_DIR"), log_folder
     )
+    # print the log
+    print ("log_folder_path", log_folder_path);
+        
     if not os.path.exists(log_folder_path):
         os.makedirs(log_folder_path)
 
