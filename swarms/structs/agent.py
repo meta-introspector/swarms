@@ -441,7 +441,7 @@ class Agent:
         self.time_created = time_created
         self.data_memory = data_memory
         self.load_yaml_path = load_yaml_path
-        self.tokenizer = TikTokenizer()
+        self.tokenizer = None #TikTokenizer()
         self.auto_generate_prompt = auto_generate_prompt
         self.rag_every_loop = rag_every_loop
         self.plan_enabled = plan_enabled
@@ -572,6 +572,12 @@ class Agent:
         if agent_ops_on is True:
             threading.Thread(target=self.activate_agentops()).start()
 
+        total_tokens =0
+        if (self.tokenizer):
+            total_tokens = self.tokenizer.count_tokens(
+                self.short_memory.get_str()
+            )
+
         # Many steps
         self.agent_output = ManySteps(
             agent_id=agent_id,
@@ -581,9 +587,7 @@ class Agent:
             max_loops=self.max_loops,
             steps=self.short_memory.to_dict(),
             full_history=self.short_memory.get_str(),
-            total_tokens=self.tokenizer.count_tokens(
-                self.short_memory.get_str()
-            ),
+            total_tokens=total_tokens,
             stopping_token=self.stopping_token,
             interactive=self.interactive,
             dynamic_temperature_enabled=self.dynamic_temperature_enabled,
@@ -1023,11 +1027,12 @@ class Agent:
             self.agent_output.full_history = (
                 self.short_memory.get_str()
             )
-            self.agent_output.total_tokens = (
-                self.tokenizer.count_tokens(
-                    self.short_memory.get_str()
+            if (self.tokenizer):
+                self.agent_output.total_tokens = (
+                    self.tokenizer.count_tokens(
+                        self.short_memory.get_str()
+                    )
                 )
-            )
 
             # Handle artifacts
             if self.artifacts_on is True:

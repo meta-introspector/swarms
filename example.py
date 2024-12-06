@@ -1,5 +1,6 @@
 import os
-from swarms import Agent, OpenAIChat
+from swarms import Agent
+from swarm_models import OpenAIChat
 from dotenv import load_dotenv
 load_dotenv()
 import logging
@@ -28,7 +29,7 @@ for x in (
 load_dotenv()
 
 # Get the OpenAI API key from the environment variable
-#api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("OPENAI_API_KEY","sk-11")
 
 # Create an instance of the OpenAIChat class
 model = OpenAIChat(
